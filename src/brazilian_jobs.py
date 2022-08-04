@@ -4,7 +4,7 @@ from . import jobs
 
 @lru_cache
 def read_brazilian_file(path):
-    """Reads a portuguese file from a given path and returns its content
+    """Reads a portuguese file from a given path and returns its contents
 
     Parameters
     ----------
