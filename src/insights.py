@@ -80,7 +80,8 @@ def filter_by_industry(jobs, industry):
     list
         List of jobs with provided industry
     """
-    return []
+    result = [job for job in jobs if job["industry"] == industry]
+    return result
 
 
 def checkIfDigit(list, min_or_max):
