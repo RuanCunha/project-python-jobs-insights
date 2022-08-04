@@ -18,8 +18,6 @@ def read(path):
     """
     with open(path, encoding="utf-8") as jobs:
         jobs_reader = csv.DictReader(jobs)
-        result = []
-        result.append([row for row in jobs_reader])
-        # header, *data = jobs_reader
+        result = [row for row in jobs_reader]
 
-    return result[0]
+    return result
