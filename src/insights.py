@@ -82,12 +82,12 @@ def filter_by_industry(jobs, industry):
     return []
 
 
-def checkIfDigit(list):
-    result = list[0]["max_salary"]
+def checkIfDigit(list, min_or_max):
+    result = list[0][min_or_max]
     count = 0
     while result.isdigit() is False:
         count += 1
-        result = list[count]["max_salary"]
+        result = list[count][min_or_max]
         if count > 10:
             break
     return result
@@ -109,7 +109,7 @@ def get_max_salary(path):
         The maximum salary paid out of all job opportunities
     """
     jobs_list = read(path)
-    result = checkIfDigit(jobs_list)
+    result = checkIfDigit(jobs_list, "max_salary")
 
     result = int(result)
     for job in jobs_list:
@@ -134,7 +134,15 @@ def get_min_salary(path):
     int
         The minimum salary paid out of all job opportunities
     """
-    pass
+    jobs_list = read(path)
+    result = checkIfDigit(jobs_list, "min_salary")
+
+    result = int(result)
+    for job in jobs_list:
+        if job["min_salary"].isdigit():
+            if int(job["min_salary"]) < result:
+                result = int(job["min_salary"])
+    return result
 
 
 def matches_salary_range(job, salary):
