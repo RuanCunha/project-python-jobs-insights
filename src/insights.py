@@ -82,6 +82,17 @@ def filter_by_industry(jobs, industry):
     return []
 
 
+def checkIfDigit(list):
+    result = list[0]["max_salary"]
+    count = 0
+    while result.isdigit() is False:
+        count += 1
+        result = list[count]["max_salary"]
+        if count > 10:
+            break
+    return result
+
+
 def get_max_salary(path):
     """Get the maximum salary of all jobs
 
@@ -98,13 +109,7 @@ def get_max_salary(path):
         The maximum salary paid out of all job opportunities
     """
     jobs_list = read(path)
-    result = jobs_list[0]["max_salary"]
-    count = 0
-    while result.isdigit() is False:
-        count += 1
-        result = jobs_list[count]["max_salary"]
-        if count > 10:
-            break
+    result = checkIfDigit(jobs_list)
 
     result = int(result)
     for job in jobs_list:
